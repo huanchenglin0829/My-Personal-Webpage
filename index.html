@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huancheng Lin — Digital Media & Cross-Border Marketing</title>
+<meta name="description" content="Personal website of Huancheng Lin (林焕程) — MA Digital Media candidate at the University of Leeds, focused on overseas brand marketing and consumer research.">
+<style>
+  :root{
+    --accent:#b4632f;
+    --accent-soft:#e8c9b0;
+    --ink:#3b322c;
+    --ink-soft:#6f6259;
+    --paper:rgba(255,253,250,.92);
+    --card:rgba(255,255,255,.88);
+    --line:rgba(180,120,80,.18);
+    --radius:18px;
+    --shadow:0 8px 30px rgba(90,60,30,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI","PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
+    color:var(--ink);
+    line-height:1.7;
+    min-height:100vh;
+  }
+  /* ---------- Full-page background ---------- */
+  .bg{
+    position:fixed;inset:0;z-index:-2;
+    background:url("assets/bg.jpg") center/cover no-repeat;
+    transform:scale(1.08); /* crop watermark corner */
+  }
+  .bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(120deg,rgba(255,250,242,.55) 0%,rgba(255,248,238,.25) 55%,rgba(255,246,235,.45) 100%);
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{
+    max-width:1180px;margin:0 auto;padding:48px 24px 64px;
+    display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start;
+  }
+
+  /* ---------- Left sidebar ---------- */
+  aside{
+    position:sticky;top:48px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:36px 28px 28px;
+    text-align:center;
+    backdrop-filter:blur(8px);
+  }
+  .avatar{
+    width:112px;height:112px;border-radius:50%;
+    margin:0 auto 18px;
+    background:linear-gradient(135deg,var(--accent) 0%,#d99a5b 100%);
+    color:#fff;font-size:38px;font-weight:700;letter-spacing:1px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px rgba(160,90,40,.35);
+    border:4px solid rgba(255,255,255,.9);
+  }
+  aside h1{font-size:24px;font-weight:700;letter-spacing:.3px}
+  aside .sub{font-size:13.5px;color:var(--accent);font-weight:600;margin-top:4px}
+  aside .loc{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+  .status{
+    display:inline-block;margin:16px auto 4px;
+    font-size:12px;font-weight:600;color:#8a4d1f;
+    background:#f7e8d8;border:1px solid #ecd2b6;
+    padding:6px 12px;border-radius:999px;
+  }
+  nav{margin-top:22px;display:flex;flex-direction:column;gap:2px;text-align:left}
+  nav a{
+    text-decoration:none;color:var(--ink-soft);font-size:14.5px;font-weight:500;
+    padding:9px 14px;border-radius:10px;transition:.2s;
+  }
+  nav a:hover{background:#f6ead9;color:var(--accent);transform:translateX(3px)}
+  .socials{margin-top:20px;padding-top:18px;border-top:1px dashed var(--line);
+    display:flex;justify-content:center;gap:10px}
+  .socials a{
+    font-size:12.5px;font-weight:600;text-decoration:none;color:var(--accent);
+    background:#faf3ea;border:1px solid var(--line);
+    padding:6px 12px;border-radius:999px;transition:.2s;
+  }
+  .socials a:hover{background:var(--accent);color:#fff}
+
+  /* ---------- Right content ---------- */
+  main{display:flex;flex-direction:column;gap:26px;min-width:0}
+  section{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:34px 38px;
+    backdrop-filter:blur(8px);
+    scroll-margin-top:24px;
+  }
+  .kicker{
+    font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:6px;
+  }
+  h2{font-size:24px;font-weight:700;margin-bottom:20px}
+
+  /* hero */
+  .hero{padding:44px 40px}
+  .hero h2{font-size:34px;line-height:1.25;margin-bottom:12px}
+  .hero h2 em{font-style:normal;color:var(--accent)}
+  .hero p{font-size:16px;color:var(--ink-soft);max-width:56ch}
+  .hero .tags{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .tag{
+    font-size:12.5px;font-weight:600;color:#8a4d1f;
+    background:#f7ecdc;border:1px solid #ecd6ba;
+    padding:5px 12px;border-radius:999px;
+  }
+
+  /* about */
+  .about p{margin-bottom:12px;color:var(--ink-soft)}
+  .about p strong{color:var(--ink)}
+
+  /* timeline (experience & education) */
+  .item{position:relative;padding:0 0 26px 26px;border-left:2px solid #ecd9c4}
+  .item:last-child{padding-bottom:4px;border-left-color:transparent}
+  .item::before{
+    content:"";position:absolute;left:-8px;top:6px;
+    width:14px;height:14px;border-radius:50%;
+    background:var(--accent);border:3px solid #f8efe2;
+  }
+  .item h3{font-size:17.5px;font-weight:700}
+  .item .meta{font-size:13px;color:var(--ink-soft);margin:2px 0 10px}
+  .item ul{list-style:none}
+  .item li{
+    font-size:14.5px;color:var(--ink-soft);
+    padding-left:16px;position:relative;margin-bottom:6px;
+  }
+  .item li::before{content:"·";position:absolute;left:2px;color:var(--accent);font-weight:700}
+  .item .edu-extra{font-size:14px;color:var(--ink-soft);margin-top:6px}
+  .item .edu-extra b{color:var(--ink)}
+
+  /* projects */
+  .project{padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.75);margin-bottom:18px}
+  .project:last-child{margin-bottom:0}
+  .project h3{font-size:17.5px;font-weight:700}
+  .project .meta{font-size:13px;color:var(--ink-soft);margin:2px 0 10px}
+  .project ul{list-style:none}
+  .project li{font-size:14.5px;color:var(--ink-soft);padding-left:16px;position:relative;margin-bottom:6px}
+  .project li::before{content:"·";position:absolute;left:2px;color:var(--accent);font-weight:700}
+
+  /* more */
+  .more-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .more-card{border:1px solid var(--line);border-radius:14px;padding:20px 22px;background:rgba(255,255,255,.75)}
+  .more-card h3{font-size:15px;font-weight:700;margin-bottom:8px;color:var(--accent)}
+  .more-card p,.more-card li{font-size:14px;color:var(--ink-soft)}
+  .more-card ul{list-style:none}
+  .more-card li{padding:3px 0}
+  .more-card li b{color:var(--ink);font-weight:600}
+
+  /* contact */
+  .contact .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+  .btn{
+    text-decoration:none;font-size:14.5px;font-weight:600;
+    padding:11px 22px;border-radius:999px;transition:.2s;
+  }
+  .btn.primary{background:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(160,90,40,.3)}
+  .btn.primary:hover{background:#9c5226;transform:translateY(-2px)}
+  .btn.ghost{border:1.5px solid var(--accent);color:var(--accent)}
+  .btn.ghost:hover{background:#f8ecdd}
+
+  footer{text-align:center;font-size:12.5px;color:var(--ink-soft);padding-top:6px}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .wrap{grid-template-columns:1fr}
+    aside{position:static}
+    nav{flex-direction:row;flex-wrap:wrap;justify-content:center}
+    .more-grid{grid-template-columns:1fr}
+    section{padding:26px 22px}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="wrap">
+
+  <!-- ============ LEFT SIDEBAR ============ -->
+  <aside>
+    <div class="avatar">HL</div>
+    <h1>Huancheng Lin</h1>
+    <div class="sub">Cross-Border Brand Marketing · Consumer Research</div>
+    <div class="loc">📍 Leeds, UK · Guangzhou / Shenzhen</div>
+    <div class="status">🟢 Open to remote internships · Nov 2026 – Jun 2027</div>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#more">Publication &amp; More</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/huancheng-lin-903759392" target="_blank" rel="noopener">in · LinkedIn</a>
+      <a href="mailto:lin1552321517@163.com">✉ · Email</a>
+    </div>
+  </aside>
+
+  <!-- ============ RIGHT CONTENT ============ -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="kicker">Hello &amp; Welcome</div>
+      <h2>Hi, I'm Huancheng —<br>I listen to <em>consumers</em>, and help brands grow <em>beyond borders</em>.</h2>
+      <p>MA Digital Media candidate at the University of Leeds. I care about how Chinese brands build their presence in overseas markets — through consumer research, data, and honest storytelling.</p>
+      <div class="tags">
+        <span class="tag">Consumer Insights</span>
+        <span class="tag">VOC Research</span>
+        <span class="tag">Cross-Border Marketing</span>
+        <span class="tag">0-to-1 Branding</span>
+        <span class="tag">Bilingual CN / EN</span>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="kicker">About Me</div>
+      <h2>A bit about who I am</h2>
+      <p><strong>Master of Digital Media @ University of Leeds.</strong> Focused on overseas brand marketing, consumer research and Chinese brands' global expansion.</p>
+      <p><strong>Experience:</strong> cross-border brand research (Anker, Shein), brand communication &amp; events internships (Lenovo), and founder of the football-fan brand <strong>TheSeagulls</strong> (1.5k+ Rednote followers).</p>
+      <p><strong>Skills:</strong> consumer insights, data analysis, visual design &amp; AI tools — working bilingually in Chinese and English.</p>
+      <p><strong>Now:</strong> open for digital marketing &amp; market research internships (Nov 2026 – Jun 2027), and seeking 2027 graduate roles in overseas brand marketing.</p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="kicker">Work Experience</div>
+      <h2>Where I've worked</h2>
+
+      <div class="item">
+        <h3>Overseas Marketing Research · Anker Innovations</h3>
+        <div class="meta">Sep 2026 – Oct 2026 · Shenzhen, China · Remote / Part-time</div>
+        <ul>
+          <li>Completed a research project on the overseas market of consumer electronics under the guidance of an enterprise mentor, independently conducting all desk research.</li>
+          <li>Synthesized 120+ internal and external brand documents into an independent study of Anker's overseas marketing, covering competitor positioning, localization, and channel strategy.</li>
+          <li>Collected and analyzed 2,700+ Amazon VOC reviews with Thunderbit, Apify, and Python, then translated customer feedback into cross-channel improvement recommendations.</li>
+          <li>Benchmarked Anker against Belkin, UGREEN, EcoFlow, and Baseus, then produced research reports on competitive landscape, localization gaps, and channel tactics.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <h3>Brand Communication &amp; Event Operations Intern · Lenovo</h3>
+        <div class="meta">Sep 2025 – Dec 2025 · Shenzhen, China · On-site</div>
+        <ul>
+          <li>Participated in over 40 corporate visits, university tours, and executive events — responsible for venue guidance, translation, meeting preparation, and emergency support.</li>
+          <li>As the primary liaison in Shenzhen, planned and operated 12 family-oriented tech activities at the exhibition hall; optimized reception and event processes, improving registration rates, participation rates, and overall satisfaction.</li>
+          <li>Completed production coordination for Lenovo's OVO stationery series: selected and negotiated with multiple suppliers, delivered 3 cultural products; jointly operated the official Rednote and WeChat accounts.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <h3>Content Operations (Swedish Brand) · Century Life Biotechnology</h3>
+        <div class="meta">Mar 2025 – May 2025 · Guangzhou, China · On-site</div>
+        <ul>
+          <li>Coordinated the Swedish probiotic brand's Rednote account: content calendar, visuals, and a reusable content framework.</li>
+          <li>Ran the monthly KOC seeding program (~50 nano-influencers per month), collaborated on brand advertising integrations, and iterated content formats based on channel data.</li>
+          <li>Contributed to team results: orders +133%, GMV +143%, 4 SKUs listed on the Rednote store within three months.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <h3>Campus Ambassador · New Oriental Education &amp; Technology Group</h3>
+        <div class="meta">Jul 2024 – Sep 2024 · Guangzhou, China · Remote</div>
+        <ul>
+          <li>Produced student-centered promotional content on Xiaohongshu for New Oriental training courses.</li>
+          <li>Led campus outreach through presentations, questionnaires, and peer networks.</li>
+          <li>Converted 10+ paid users and influenced 20+ students to pursue IELTS and study-abroad programs.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="kicker">Selected Projects</div>
+      <h2>Things I've built &amp; researched</h2>
+
+      <div class="project">
+        <h3>SHEIN Market Research Programme</h3>
+        <div class="meta">Aug 2025 – Sep 2026 · Project-based, Remote</div>
+        <ul>
+          <li>Analyzed 18 months of GMV data across 3 core categories, decomposing the price and volume drivers behind category growth.</li>
+          <li>Conducted competitive research on Temu and TikTok Shop versus SHEIN, plus a policy study on tariffs across the US, EU, Middle East, and Latin America.</li>
+          <li>Produced a category-level GMV analysis with resource-allocation recommendations; presented findings to the project mentor.</li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <h3>"TheSeagulls" Fan Community Brand Programme</h3>
+        <div class="meta">Apr 2025 – Apr 2026 · Founder, 0-to-1</div>
+        <ul>
+          <li>Built a football-fan brand from scratch, owning the full process from concept and positioning to launch — content, community, and merchandise.</li>
+          <li>Established and ran the Rednote account as the brand's core content channel: 11 recurring columns and 300+ posts, reaching 2M+ impressions, 13,000+ engagements, and 1,500+ followers.</li>
+          <li>Built a multi-tier community system (Rednote → QQ/WeChat fan groups) with 700+ members through content promotion and UGC campaigns.</li>
+          <li>From 0 to 1, designed 10 "TheSeagulls" merchandise SKUs — completing the whole journey from supplier connection and prototyping to promotion and first sales.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="kicker">Education</div>
+      <h2>Academic background</h2>
+
+      <div class="item">
+        <h3>University of Leeds — MA Digital Media</h3>
+        <div class="meta">Aug 2026 – Nov 2027 · Leeds, United Kingdom</div>
+      </div>
+
+      <div class="item">
+        <h3>Nanfang College of Guangzhou — BA, Network &amp; New Media</h3>
+        <div class="meta">Sep 2022 – Jun 2026 · Guangzhou, China</div>
+        <div class="edu-extra">
+          <b>GPA:</b> 3.80 / 5.0 (88.5 / 100) &nbsp;·&nbsp; <b>Activities:</b> School English Corner, School Soccer Team, Departmental Student Council<br>
+          <b>Honors:</b> Scholarship for Academic Excellence ×3 · Provincial/National Prizes ×4 · School Prizes ×8 · Outstanding Graduation Thesis of the College
+        </div>
+      </div>
+    </section>
+
+    <!-- MORE -->
+    <section id="more">
+      <div class="kicker">Publication &amp; More</div>
+      <h2>Beyond the job titles</h2>
+      <div class="more-grid">
+        <div class="more-card">
+          <h3>📄 Publication</h3>
+          <p><b>Research on the Innovative Path of Integrating Ceramic Culture into Cross-border E-commerce from the 5W Perspective — Taking the Amazon Cross-border E-commerce Platform as an Example</b><br>
+          Chinese Sci-Tech Journal Database (Full-text), Economics &amp; Management · Aug 2025</p>
+        </div>
+        <div class="more-card">
+          <h3>🎓 Certifications &amp; Languages</h3>
+          <ul>
+            <li><b>IELTS 6.5</b> — May 2025</li>
+            <li><b>Chinese</b> — Native</li>
+            <li><b>Cantonese</b> — Intermediate (daily conversation)</li>
+            <li><b>English</b> — Fluent working language</li>
+          </ul>
+        </div>
+        <div class="more-card" style="grid-column:1/-1">
+          <h3>🧰 Toolbox</h3>
+          <p>Python (data scraping &amp; analysis) · Apify · Thunderbit · Excel funnel analysis · Photoshop · Lightroom · Canva · Rednote / WeChat content operations · AI-assisted research tools</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="kicker">Get in Touch</div>
+      <h2>Let's talk</h2>
+      <p style="color:var(--ink-soft);max-width:60ch">I'm currently open to remote digital marketing &amp; market research internships (Nov 2026 – Jun 2027), and to 2027 graduate roles in overseas brand marketing — based in Guangzhou or Shenzhen. If my experience fits your team, I'd love to hear from you.</p>
+      <div class="btns">
+        <a class="btn primary" href="mailto:lin1552321517@163.com">✉ Email Me</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/huancheng-lin-903759392" target="_blank" rel="noopener">in Connect on LinkedIn</a>
+      </div>
+    </section>
+
+    <footer>© 2026 Huancheng Lin · Built with ☕ and curiosity</footer>
+
+  </main>
+</div>
+
+</body>
+</html>
